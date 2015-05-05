@@ -61,11 +61,6 @@ shutil.copyfile('Cache/avgErr.txt', dirName+'avgErr.txt')
 shutil.copyfile('Cache/submission.csv', dirName+'submission.csv')
 shutil.copyfile('Cache/Metrics.csv', dirName+'Metrics.csv')
 
-
-
-# Upload to GitHub
-
-
 # Finish
 metrics = stage4learn.metrics
 os.system('say "Done"')
