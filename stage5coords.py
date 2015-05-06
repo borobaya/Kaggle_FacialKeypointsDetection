@@ -245,7 +245,6 @@ def run(params):
     clearTest()
     
     # ------------------------------- Clean Up --------------------------------
-    clearParams()
     
     m, s = divmod((time.time() - start), 60)
     print "Time taken to run:", int(m), "minutes", round(s,3), "seconds"
@@ -254,6 +253,7 @@ def run(params):
     if voice_enabled:
         os.system('say "Facial coordinates computed"')
         os.system('say "Average deviation of '+`round(avgErrDistTest,1)`+' pixels"')
+    clearParams()
     gc.collect() # is this doing anything?
 
 if __name__ == '__main__':

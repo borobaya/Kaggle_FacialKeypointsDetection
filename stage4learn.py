@@ -190,7 +190,6 @@ def run(params, classifier):
     clearTestResults()
     
     # ------------------------------- Clean Up --------------------------------
-    clearParams()
     clf = None
     
     m, s = divmod((time.time() - start), 60)
@@ -201,6 +200,7 @@ def run(params, classifier):
         os.system('say "Model trained"')
     if metrics.sum().sum()==0:
         print "USELESS RESULTS"
+    clearParams()
     gc.collect() # is this doing anything?
 
 if __name__ == '__main__':

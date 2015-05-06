@@ -126,7 +126,8 @@ def run(params):
     print "Training set..."
     loadTrain()
     createWindowTrainXPCs(windowTrainX)
-    print windowTrainXPCs.shape[1], "principal components computed"
+    pcCount = windowTrainXPCs.shape[1]
+    print pcCount, "principal components computed"
     saveTrain()
     clearTrain()
     
@@ -138,14 +139,14 @@ def run(params):
     
     # ------------------------------- Clean Up --------------------------------
     clearPCs()
-    clearParams()
     
     m, s = divmod((time.time() - start), 60)
     print "Time taken to run:", m, "minutes", round(s,3), "seconds"
     
     # Sound when completed
     if voice_enabled:
-        os.system('say "'+`windowTrainXPCs.shape[1]`+' principal components computed"')
+        os.system('say "'+`pcCount`+' principal components computed"')
+    clearParams()
     gc.collect() # is this doing anything?
 
 if __name__ == '__main__':

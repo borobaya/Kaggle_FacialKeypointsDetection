@@ -259,7 +259,8 @@ def run(params):
     print "Training set..."
     loadTrain()
     createWindowTrainingSet()
-    print windowTrainX.shape[0], "training observations created"
+    trainObsCount = windowTrainX.shape[0]
+    print trainObsCount, "training observations created"
     saveTrain()
     clearTrain()
     
@@ -270,14 +271,14 @@ def run(params):
     clearTest()
     
     # ------------------------------- Clean Up --------------------------------
-    clearParams()
     
     m, s = divmod((time.time() - start), 60)
     print "Time taken to run:", int(m), "minutes", round(s,3), "seconds"
     
     # Sound when completed
     if voice_enabled:
-        os.system('say "'+`windowTrainX.shape[0]`+' training observations created"')
+        os.system('say "'+`trainObsCount`+' training observations created"')
+    clearParams()
     gc.collect() # is this doing anything?
 
 if __name__ == '__main__':

@@ -89,7 +89,6 @@ def run(params):
     clear()
     
     # ------------------------------- Clean Up --------------------------------
-    clearParams()
     
     m, s = divmod((time.time() - start), 60)
     print "Time taken to run:", int(m), "minutes", round(s,3), "seconds"
@@ -97,6 +96,7 @@ def run(params):
     # Sound when completed
     if voice_enabled:
         os.system('say "Submission file created"')
+    clearParams()
     gc.collect() # is this doing anything?
 
 if __name__ == '__main__':
