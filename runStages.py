@@ -25,10 +25,10 @@ import shutil
 import time
 
 params = {
-          'partition': 2,
+          'partition': 0,
           'partition_sizes': [10, 10, 10, 10, 10],
           'train_size': None, # overrides value in partition_sizes
-          'test_size': 10,
+          'test_size': 1,
           'w': 96, # dimensions of the image
           'window_size': 15, # should be an odd number; 15
           'shrink_by': 1,
@@ -37,7 +37,7 @@ params = {
           'pc_variance': 0.9,
           'train_ratio': 0.6666, # Fraction of observations to train on
           'train_max': 2000000, # Maximum number of observations to train on 
-          'voice_enabled': True
+          'voice_enabled': False
          }
 
 def run(params):
@@ -65,5 +65,12 @@ def run(params):
     # Finish
     os.system('say "Stages completed"')
 
+def runAll(params):
+    for i in xrange(len(params["partition_sizes"])):
+        print "######### Partition", i, "#########"
+        params["partition"] = i
+        run(params)
+    os.system('say "Done"')
+
 if __name__ == '__main__':
-    run(params)
+    runAll(params)
