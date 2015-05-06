@@ -16,6 +16,7 @@ import stage3PCs
 import stage4learn
 import stage5coords
 import stage6submission
+import stage7avg
 # Machine Learning algorithm
 from sklearn import neighbors
 # Other
@@ -26,13 +27,13 @@ import time
 
 params = {
           'partition': 0,
-          'partition_sizes': [10, 10, 10, 10, 10],
+          'partition_sizes': [100, 100, 100, 100, 100, 100],
           'train_size': None, # overrides value in partition_sizes
-          'test_size': 1,
+          'test_size': None,
           'w': 96, # dimensions of the image
           'window_size': 15, # should be an odd number; 15
-          'shrink_by': 1,
-          'pos_tolerance': 11.5,
+          'shrink_by': 1, # 1
+          'pos_tolerance': 11.5, # 11.5
           'pc_num': 7, # Overrides pc_variance; 7
           'pc_variance': 0.9,
           'train_ratio': 0.6666, # Fraction of observations to train on
@@ -64,12 +65,16 @@ def run(params):
     
     # Finish
     os.system('say "Stages completed"')
+    return dirName
 
 def runAll(params):
+    folders = []
     for i in xrange(len(params["partition_sizes"])):
         print "######### Partition", i, "#########"
         params["partition"] = i
-        run(params)
+        dirName = run(params)
+        folders.append(dirName)
+    stage7avg.run(params, folders)
     os.system('say "Done"')
 
 if __name__ == '__main__':

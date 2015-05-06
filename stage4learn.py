@@ -176,9 +176,13 @@ def run(params, classifier):
     
     # Process
     for i in xrange(15):
-        windowTrainZ[:,i] = learn(i)
+        temp = learn(i)
+        if len(temp)>0:
+            windowTrainZ[:,i] = temp
         
-        windowTestZ[:,i] = clf.predict(windowTestXPCs)
+        temp = clf.predict(windowTestXPCs)
+        if len(temp)>0:
+            windowTestZ[:,i] = temp
     
     clearObservations()
     clearTest()
